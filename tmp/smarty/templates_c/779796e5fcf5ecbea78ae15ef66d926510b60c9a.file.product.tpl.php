@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.6, created on 2021-05-04 23:12:32
+<?php /* Smarty version Smarty-3.1.6, created on 2021-05-10 18:47:32
          compiled from "D:\OSPanel\domains\myshop.local\config/../views/default\product.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:185481682660917d499f9c29-60430957%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '779796e5fcf5ecbea78ae15ef66d926510b60c9a' => 
     array (
       0 => 'D:\\OSPanel\\domains\\myshop.local\\config/../views/default\\product.tpl',
-      1 => 1620159151,
+      1 => 1620661631,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'rsProducts' => 0,
+    'itemInCart' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -33,10 +34,29 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 Стоимость: <?php echo $_smarty_tpl->tpl_vars['rsProducts']->value['price'];?>
 
 
+<a id="removeCart_<?php echo $_smarty_tpl->tpl_vars['rsProducts']->value['id'];?>
+"
+        <?php if (!$_smarty_tpl->tpl_vars['itemInCart']->value){?>
+            class = "hideme"
+        <?php }?>
+   href="#"
+   onClick="removeFromCart(<?php echo $_smarty_tpl->tpl_vars['rsProducts']->value['id'];?>
+); return false;"
+   alt="Удалить из корзины">
+    Удалить из  корзины
+</a>
 <a id="addCart_<?php echo $_smarty_tpl->tpl_vars['rsProducts']->value['id'];?>
-" href="#"  onClick="addToCart(<?php echo $_smarty_tpl->tpl_vars['rsProducts']->value['id'];?>
-); return false;" alt="Добавить в
-корзину">Добавить в корзину</a>
+"
+        <?php if ($_smarty_tpl->tpl_vars['itemInCart']->value){?>
+            class = "hideme"
+        <?php }?>
+   href="#"
+   onClick="addToCart(<?php echo $_smarty_tpl->tpl_vars['rsProducts']->value['id'];?>
+); return false;"
+   alt="Добавить в корзину">
+    Добавить в корзину
+</a>
+
 <p>Описание <br>
     <?php echo $_smarty_tpl->tpl_vars['rsProducts']->value['description'];?>
 
