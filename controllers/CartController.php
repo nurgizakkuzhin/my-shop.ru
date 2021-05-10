@@ -12,6 +12,8 @@ include_once __DIR__ . '/../models/CategoriesModel.php';
 include_once __DIR__ . '/../models/ProductsModel.php';
 
 /**
+ * Добавление продукта в корзину
+ * 
  * @param integer id GET параметр - ID добавляемого продукта
  * @return json информация об операцаии (успех, кол-во элементов в корзине)
  */
