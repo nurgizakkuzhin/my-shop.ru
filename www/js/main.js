@@ -60,9 +60,9 @@ function removeFromCart(itemId){
  * 
  */
 function conversionPrice(itemId){
-    var newCnt = $('#itemCnt_' + itemId).val();
-    var itemPrice = $('#itemPrice_' + itemId).attr('value');
-    var itemRealPrice = newCnt * itemPrice;
+    let newCnt = $('#itemCnt_' + itemId).val();
+    let itemPrice = $('#itemPrice_' + itemId).attr('value');
+    let itemRealPrice = newCnt * itemPrice;
 
     $('#itemRealPrice_' + itemId).html(itemRealPrice);
 }
