@@ -13,14 +13,14 @@ include_once __DIR__ . '/../models/ProductsModel.php';
 
 /**
  * Добавление продукта в корзину
- * 
+ *
  * @param integer id GET параметр - ID добавляемого продукта
  * @return json информация об операцаии (успех, кол-во элементов в корзине)
  */
 function addtocartAction()
 {
     $itemId = isset($_GET['id']) ? intval($_GET['id']) : null;
-    if (! $itemId) {
+    if (!$itemId) {
         return false;
     }
     $resData = [];
@@ -36,4 +36,29 @@ function addtocartAction()
 
     echo json_encode($resData);
 
+}
+
+/**
+ * Удаление продукта из корзины
+ *
+ * @param integer id GET параметр - ID удаляемого из корзины продукта
+ * @return json информация об операции (успех, кол-во элементов в корзине)
+ */
+function removefromcartAction()
+{
+    $itemId = isset($_GET['id']) ? intval($_GET['id']) : null;
+    if (!$itemId) {
+        exit;
+    }
+
+    $resData = [];
+    $key = array_search($itemId, $_SESSION['cart']);
+    if ($key !== false) {
+        unset($_SESSION['cart'][$key]);
+        $resData['success'] = 1;
+        $resData['cntItems'] = count($_SESSION['cart']);
+    } else {
+        $resData['success'] = 0;
+    }
+    echo json_encode($resData);
 }
