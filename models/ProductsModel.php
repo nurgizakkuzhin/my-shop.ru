@@ -57,3 +57,20 @@ function getProductById($itemId)
     $res = mysqli_query($link, $sql);
     return mysqli_fetch_assoc($res);
 }
+
+/**
+ * Получить список продуктов из массива идентификаторов (ID's)
+ *
+ * @param $itemsIds array массив идентификаторов продуктов
+ * @return array|bool массив данных продуктов
+ */
+function getProductsFromArray($itemsIds)
+{
+    $strIds = implode(',', $itemsIds);
+    $sql = "SELECT * FROM products WHERE id IN ({$strIds})";
+    $db_config = require __DIR__ . '/../config/db.php';
+    $link = mysqli_connect($db_config['localhost'], $db_config['user'], $db_config['password'], $db_config['db_name']);
+    $res = mysqli_query($link, $sql);
+
+    return createSmartyRsArray($res);
+}
